@@ -1,0 +1,9 @@
+{
+  "name": "gd.fabric-redux.ux",
+  "version": "0.0.0",
+  "description": "GD.FabricRedux.UX",
+  "main": "server.js",
+  "author": {
+    "name": "gunja"
+  }
+}

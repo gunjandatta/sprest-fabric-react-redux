@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="8d575719-ee35-4f18-acc4-72c1f5076f33" 
+        solutionId="8d575719-ee35-4f18-acc4-72c1f5076f33" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="GD.FabricRedux.App"
+        sharePointProductVersion="15.0">
+  <features>
+        <featureReference itemId="8dd2fa24-d60c-42f1-95a0-bf5facf18da0" />
+  </features>
+</package>
