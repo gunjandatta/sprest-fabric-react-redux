@@ -1,4 +1,5 @@
 import React from "react";
+import List from "../list";
 import Navigation from "../navigation";
 
 /**
@@ -9,6 +10,7 @@ const Dashboard = () => {
     return (
         <div>
             <Navigation />
+            <List />
         </div>
     );
 }

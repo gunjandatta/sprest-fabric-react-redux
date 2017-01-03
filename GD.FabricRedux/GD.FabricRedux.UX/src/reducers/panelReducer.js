@@ -1,7 +1,7 @@
 import ActionTypes from "../actions/actionTypes"
 import initalState from "./initialState";
 
-export default function panelReducer(state = initalState.showPanel, action) {
+export default function panelReducer(state = { showPanel: initalState.showPanel }, action) {
     switch(action.type) {
 			// Handle the hide/show panel actions
 			case ActionTypes.HidePanel:
@@ -18,6 +18,6 @@ export default function panelReducer(state = initalState.showPanel, action) {
 
 			// Action is not handled by this reducer, return the state
 			default:
-					return state;
+				return state;
     }
 }

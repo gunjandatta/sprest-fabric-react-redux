@@ -1,23 +1,22 @@
 import ActionTypes from "../actions/actionTypes"
 import initalState from "./initialState";
 
-export default function dialogReducer(state = { showDialog: initalState.showDialog }, action) {
+export default function panelReducer(state = { items: initalState.items }, action) {
     switch(action.type) {
-			// Handle the hide/show dialog actions
-			case ActionTypes.HideDialog:
-			case ActionTypes.ShowDialog:
+			// Handle the load items action
+            case ActionTypes.LoadItems:
 				// Return a copy of the current state
 				return Object.assign(
 					// Create a new blank object
 					{},
 					// Copy the default state
 					state,
-					// Update the "showDialog" state value
-					{showDialog: action.showDialog}
+					// Update the "showPanel" state value
+					{items: action.items}
 				);
 
 			// Action is not handled by this reducer, return the state
 			default:
-				return state;
+                return state;
     }
 }
