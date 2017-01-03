@@ -14,7 +14,7 @@ import {
  * Navigation
  */
 class Navigation extends React.Component {
-    // Constrcutor
+    // Constructor
     constructor(props, context) {
         super(props, context);
 
