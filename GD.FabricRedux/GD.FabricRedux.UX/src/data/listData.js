@@ -1,27 +1,62 @@
-class List {
-    // Method to get the list items
-    static getItems() {
-        /**
-         * TO DO - Update to query a list using the REST api
-         */
+import {
+    ContextInfo,
+    Web
+} from "gd-sprest";
 
+class ListData {
+    // Method to get the list items
+    static getItems(listName, webUrl) {
         // Return a promise
         return new Promise((resolve, reject) => {
             let requests = [];
 
-            // Parse the items
-            for (let item of Data) {
-                // Add the item
-                requests.push(item);
-            }
+            // See if this is the SP environment
+            if(ContextInfo.existsFl) {
+                // Get the web
+                (new Web(webUrl))
+                    // Get the list
+                    .Lists(listName)
+                    // Get the items
+                    .Items()
+                    // Set the query
+                    .query({
+                        OrderBy: ["Title"],
+                        Select: ["ID", "Title", "EIEMail", "EIAddress", "EICity", "EIState", "EIPostalCode"]
+                    })
+                    // Execute the request
+                    .execute((items) => {
+                        // Parse the results
+                        for(let item of items.results) {
+                            // Add the item
+                            requests.push({
+                                ID: item["ID"],
+                                Title: item["Title"],
+                                EIEMail: item["EIEMail"],
+                                EIAddress: item["EIAddress"],
+                                EICity: item["EICity"],
+                                EIState: item["EIState"],
+                                EIPostalCode: item["EIPostalCode"],
+                            });
+                        }
 
-            // Resolve the promise
-            resolve(requests);
+                        // Resolve the promise
+                        resolve(requests);
+                    });
+            } else {
+                // Parse the items
+                for (let item of Data) {
+                    // Add the item
+                    requests.push(item);
+                }
+
+                // Resolve the promise
+                resolve(requests);
+            }
         });
     }
 }
 
-export default List;
+export default ListData;
 
 // Test Data
 const Data = [

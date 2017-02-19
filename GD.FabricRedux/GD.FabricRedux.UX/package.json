@@ -11,6 +11,7 @@
     "test": "webpack-dev-server --hot --inline --colors --progress"
   },
   "dependencies": {
+    "gd-sprest": "^1.1.1",
     "office-ui-fabric-react": "^0.82.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
