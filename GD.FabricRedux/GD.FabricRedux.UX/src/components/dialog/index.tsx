@@ -9,6 +9,7 @@ import {
  */
 const DemoDialog = ({closeDialog, visible}) => {
     return (
+        !visible ? <div /> :
         <Dialog
             isBlocking={true}
             isOpen={visible}

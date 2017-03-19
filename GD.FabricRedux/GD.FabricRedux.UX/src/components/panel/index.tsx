@@ -5,28 +5,19 @@ import {
 } from "office-ui-fabric-react";
 
 /**
- * Properties
- */
-interface Props {
-    closePanel: any,
-    visible: boolean
-}
-
-/**
  * Demo Panel
  */
-class DemoPanel extends React.Component<Props, any> {
+const DemoPanel = ({closePanel, visible}) => {
     // Render the panel
-    render() {
-        return (
-            <Panel
-                headerText="Demo Panel"
-                isOpen={this.props.visible}
-                onDismiss={this.props.closePanel}
-                type={PanelType.smallFixedFar}
-                />
-        );
-    }
+    return (
+        !visible ? <div /> :
+        <Panel
+            headerText="Demo Panel"
+            isOpen={visible}
+            onDismiss={closePanel}
+            type={PanelType.smallFixedFar}
+            />
+    );
 }
 
 export default DemoPanel;

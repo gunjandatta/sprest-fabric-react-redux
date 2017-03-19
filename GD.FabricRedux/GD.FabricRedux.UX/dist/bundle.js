@@ -50154,8 +50154,9 @@ var office_ui_fabric_react_1 = __webpack_require__(51);
  */
 var DemoDialog = function (_a) {
     var closeDialog = _a.closeDialog, visible = _a.visible;
-    return (React.createElement(office_ui_fabric_react_1.Dialog, { isBlocking: true, isOpen: visible, onDismiss: closeDialog, type: office_ui_fabric_react_1.DialogType.close, title: "Demo Dialog" },
-        React.createElement("h5", null, "This is an example of creating a dialog.")));
+    return (!visible ? React.createElement("div", null) :
+        React.createElement(office_ui_fabric_react_1.Dialog, { isBlocking: true, isOpen: visible, onDismiss: closeDialog, type: office_ui_fabric_react_1.DialogType.close, title: "Demo Dialog" },
+            React.createElement("h5", null, "This is an example of creating a dialog.")));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = DemoDialog;
@@ -50191,7 +50192,6 @@ var DemoList = (function (_super) {
     }
     // Render the list
     DemoList.prototype.render = function () {
-        debugger;
         var items = this.props.items;
         return (React.createElement(office_ui_fabric_react_1.DetailsList, { items: this.props.items }));
     };
@@ -50355,32 +50355,17 @@ function (dispatch) {
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var React = __webpack_require__(0);
 var office_ui_fabric_react_1 = __webpack_require__(51);
 /**
  * Demo Panel
  */
-var DemoPanel = (function (_super) {
-    __extends(DemoPanel, _super);
-    function DemoPanel() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+var DemoPanel = function (_a) {
+    var closePanel = _a.closePanel, visible = _a.visible;
     // Render the panel
-    DemoPanel.prototype.render = function () {
-        return (React.createElement(office_ui_fabric_react_1.Panel, { headerText: "Demo Panel", isOpen: this.props.visible, onDismiss: this.props.closePanel, type: office_ui_fabric_react_1.PanelType.smallFixedFar }));
-    };
-    return DemoPanel;
-}(React.Component));
+    return (!visible ? React.createElement("div", null) :
+        React.createElement(office_ui_fabric_react_1.Panel, { headerText: "Demo Panel", isOpen: visible, onDismiss: closePanel, type: office_ui_fabric_react_1.PanelType.smallFixedFar }));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = DemoPanel;
 
