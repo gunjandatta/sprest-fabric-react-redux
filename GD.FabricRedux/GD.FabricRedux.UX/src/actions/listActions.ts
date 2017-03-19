@@ -3,6 +3,22 @@ import ListData from "../data/listData"
 
 // Action to load the list items
 export function loadItems(data, webUrl) {
+    // See if no data exists
+    // Note - This is for testing
+    if(data == null) {
+        // Return a dispatch function
+        return function(dispatch) {
+            // Return test data
+            return ListData.getTestData().then(items => {
+                // Load the items
+                dispatch({
+                    type: ActionTypes.LoadItems,
+                    items
+                });
+            });
+        }
+    }
+
     // See if the input is the list name
     if(typeof(data) === "string") {
         // Return a dispatch function

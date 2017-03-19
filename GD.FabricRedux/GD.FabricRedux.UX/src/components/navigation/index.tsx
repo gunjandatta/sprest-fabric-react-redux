@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import * as React from "react";
 import {bindActionCreators} from 'redux';
 import {connect} from "react-redux";
 import * as dialogActions from "../../actions/dialogActions";
@@ -11,9 +11,18 @@ import {
 } from "office-ui-fabric-react";
 
 /**
+ * Properties
+ */
+interface Props {
+    actions: any,
+    showDialog: boolean,
+    showPanel: boolean
+}
+
+/**
  * Navigation
  */
-class Navigation extends React.Component {
+class Navigation extends React.Component<Props, any> {
     // Constructor
     constructor(props, context) {
         super(props, context);
@@ -39,7 +48,7 @@ class Navigation extends React.Component {
     }
 
     // The click event for a menu item
-    onClick(event, actionType) {
+    onClick(event, actionType?:string) {
         // Disable postback
         event.preventDefault();
 
@@ -102,15 +111,6 @@ class Navigation extends React.Component {
 }
 
 /**
- * Properties
- */
-Navigation.propTypes = {
-    actions: PropTypes.object.isRequired,
-    showDialog: PropTypes.bool,
-    showPanel: PropTypes.bool
-};
-
-/**
  * Connections
  */
 export default connect(
@@ -129,8 +129,8 @@ export default connect(
     (dispatch) => {
         return {
             actions: {
-                dialog: bindActionCreators(dialogActions, dispatch),
-                panel: bindActionCreators(panelActions, dispatch)
+                dialog: bindActionCreators(dialogActions as any, dispatch),
+                panel: bindActionCreators(panelActions as any, dispatch)
             }
         };
     }

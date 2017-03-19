@@ -1,4 +1,4 @@
-import {List, Web} from "gd-sprest";
+import {Helper, List, Types, Web} from "gd-sprest";
 
 /**
  * List Helper Class
@@ -7,29 +7,34 @@ export class ListHelper {
     // Method to create the fields
     createFields(list) {
         // Get the list
-        list = typeof(list) === "string" ? new $REST.List(list).execute() : list;
+        list = typeof(list) === "string" ? (new List(list)).execute() : list;
 
         // Get the fields
-        list.Fields().execute((fields) => {
+        list.Fields().execute((fields:Types.IFields) => {
             // Define the custom fields
             var customFields = [
                 {
+                    Field: null,
                     Name: "EIAddress",
                     SchemaXml: '<Field ID="{18C5A21D-F68A-49A1-9326-601720578311}" Name="EIAddress" StaticName="EIAddress" DisplayName="Address" Type="Text" />'
                 },
                 {
+                    Field: null,
                     Name: "EICity",
                     SchemaXml: '<Field ID="{18C5A21D-F68A-49A1-9326-601720578312}" Name="EICity" StaticName="EICity" DisplayName="City" Type="Text" />'
                 },
                 {
+                    Field: null,
                     Name: "EIEMail",
                     SchemaXml: '<Field ID="{18C5A21D-F68A-49A1-9326-601720578313}" Name="EIEMail" StaticName="EIEMail" DisplayName="EMail" Type="Text" />'
                 },
                 {
+                    Field: null,
                     Name: "EIPostalCode",
                     SchemaXml: '<Field ID="{18C5A21D-F68A-49A1-9326-601720578314}" Name="EIPostalCode" StaticName="EIPostalCode" DisplayName="Postal Code" Type="Text" />'
                 },
                 {
+                    Field: null,
                     Name: "EIState",
                     SchemaXml: '<Field ID="{18C5A21D-F68A-49A1-9326-601720578315}" Name="EIState" StaticName="EIState" DisplayName="State" Type="Text" />'
                 }
@@ -50,7 +55,7 @@ export class ListHelper {
                         counter++;
 
                         // Set the field
-                        customFields[j].field = field;
+                        customFields[j].Field = field;
 
                         // Break from the loop
                         break;
@@ -68,7 +73,7 @@ export class ListHelper {
             // Parse the custom fields
             for(var i=0; i<customFields.length; i++) {
                 // See if the field exists
-                if(customFields[i].field) { continue; }
+                if(customFields[i].Field) { continue; }
 
                 // Create the field
                 list.Fields().createFieldAsXml(customFields[i].SchemaXml)
@@ -143,7 +148,7 @@ export class ListHelper {
         assetsUrl = assetsUrl[assetsUrl.length-1] == "/" ? assetsUrl.substr(0, assetsUrl.length-1) : assetsUrl;
 
         // Get the list
-        list = typeof(list) === "string" ? new $REST.List(list).execute() : list;
+        list = typeof(list) === "string" ? (new List(list)).execute() : list;
 
         // Get the view
         list.Views().execute((views) => {
@@ -168,7 +173,7 @@ export class ListHelper {
                 ViewQuery: '<OrderBy><FieldRef Name="Title" /></OrderBy>'
             }).execute((view) => {
                 // Add the view fields
-                $REST.Helper.List.addViewFields(view, ["ID", "Title", "EIAddress", "EICity", "EIEMail", "EIPostalCode", "EIState"])
+                Helper.List.addViewFields(view, ["ID", "Title", "EIAddress", "EICity", "EIEMail", "EIPostalCode", "EIState"])
                 // Wait for it to complete
                 .done(() => {
                     // Log

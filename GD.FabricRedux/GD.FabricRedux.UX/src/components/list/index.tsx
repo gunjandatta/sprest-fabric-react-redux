@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import * as React from "react";
 import {bindActionCreators} from 'redux';
 import {connect} from "react-redux";
 import * as listActions from "../../actions/listActions";
@@ -8,21 +8,25 @@ import {
 } from "office-ui-fabric-react";
 
 /**
- * Demo List
+ * Properties
  */
-const DemoList = ({items}) => {
-    return (
-        <DetailsList items={items} />
-    );
+interface Props {
+    actions: any,
+    items: Array<any>
 }
 
 /**
- * Properties
+ * Demo List
  */
-DemoList.propTypes = {
-    actions: PropTypes.object.isRequired,
-    items: PropTypes.array.isRequired
-};
+class DemoList extends React.Component<Props, any> {
+    // Render the list
+    render() {
+        let {items} = this.props;
+        return (
+            <DetailsList items={this.props.items} />
+        );
+    }
+}
 
 /**
  * Connections

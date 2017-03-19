@@ -1,5 +1,6 @@
 import ActionTypes from "../actions/actionTypes"
 import initalState from "./initialState";
+import * as objectAssign from "object-assign";
 
 export default function dialogReducer(state = { showDialog: initalState.showDialog }, action) {
     switch(action.type) {
@@ -7,7 +8,7 @@ export default function dialogReducer(state = { showDialog: initalState.showDial
 			case ActionTypes.HideDialog:
 			case ActionTypes.ShowDialog:
 				// Return a copy of the current state
-				return Object.assign(
+				return objectAssign(
 					// Create a new blank object
 					{},
 					// Copy the default state

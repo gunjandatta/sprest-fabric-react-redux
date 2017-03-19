@@ -1,50 +1,43 @@
-var path = require("path");
-var webpack = require("webpack");
+var path = require('path');
 
 module.exports = {
-    // Root folder of source code
+    // Target the output of the typescript compiler
     context: path.join(__dirname, "src"),
 
-    // Entry point(s)
-    entry: {
-        // HTML
-        html: "./index.html",
-        // JS
-        javascript: "./index.js"
-    },
+    // File(s) to target
+    entry: './index.tsx',
 
     // Output
     output: {
-        // Filename
-        filename: "bundle.js",
-        // Folder
-        path: path.join(__dirname, "dist")
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
     },
 
-    // Module
+    // Resolve the file extensions
+    resolve: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
+    },
+
+    // Module to define what libraries with the compiler
     module: {
-        // Loaders
-        loaders: [
+        // Rules
+        rules: [
             {
-                // Target .js and .jsx files
-                test: /.jsx?$/,
-                // Use the "babel-loader" library
-                loader: "babel-loader",
-                // Exclude the npm libraries
+                // Target the .ts and .tsx files
+                test: /\.tsx?$/,
+                // Exclude the node modules folder
                 exclude: /node_modules/,
-                query: {
-                    // Compile Order:
-                    // 1 - "babel-preset-react"
-                    // 2 - "babel-preset-es2015"
-                    presets: ["es2015", "react"]
+                // Define the compiler to use
+                use: {
+                    // Use the 'ts-loader' library
+                    loader: "ts-loader",
+                    // Options
+                    options: {
+                        // Use the 'babel-preset-es2015' library
+                        presets: ["es2015"]
+                    }
                 }
-            },
-            {
-                // Target .htm and .html files
-                test: /.html?$/,
-                // Use the "file-loader" to copy the file to the output folder
-                loader: "file?name=[name].[ext]"
             }
         ]
     }
-}
+};

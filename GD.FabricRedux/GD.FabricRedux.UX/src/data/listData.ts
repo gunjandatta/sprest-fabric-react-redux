@@ -1,3 +1,4 @@
+import {Promise} from "es6-promise";
 import {
     ContextInfo,
     Web
@@ -54,8 +55,24 @@ class ListData {
             }
         });
     }
-}
 
+    // Method to return test Data
+    static getTestData() {
+        // Return a promise
+        return new Promise((resolve, reject) => {
+            let requests = [];
+            // Parse the items
+            for (let item of Data) {
+                // Add the item
+                requests.push(item);
+            }
+
+            // Resolve the promise
+            resolve(requests);
+        });
+    }
+}
+    
 export default ListData;
 
 // Test Data

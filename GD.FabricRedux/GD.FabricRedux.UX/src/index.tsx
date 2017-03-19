@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
 import configureStore from "./store/configureStore";
@@ -29,7 +29,7 @@ const store = configureStore();
     // Render the component
     renderComponent(data, elementId, webUrl) {
         // Load the data
-        store.dispatch(listActions.loadItems(data, webUrl));
+        store.dispatch(listActions.loadItems(data, webUrl) as any);
 
         // Get the element to render the component to and find the webpart containing this item
         let targetElement = document.getElementById(elementId);
