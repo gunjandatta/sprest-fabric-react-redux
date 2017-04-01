@@ -10,7 +10,8 @@ module.exports = {
     // Output
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: "/dist/"
     },
 
     // Resolve the file extensions
