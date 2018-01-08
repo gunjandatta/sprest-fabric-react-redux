@@ -1,6 +1,6 @@
-import {CSR_MyProject} from "./jslink";
-import {ListHelper} from "./list";
+import { CSR_MyProject } from "./jslink";
+import { createList } from "./list";
 export const Scripts = {
     JSLink: CSR_MyProject,
-    List: new ListHelper()
+    List: createList
 };

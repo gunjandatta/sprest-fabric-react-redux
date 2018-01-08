@@ -29,15 +29,21 @@ module.exports = {
                 // Exclude the node modules folder
                 exclude: /node_modules/,
                 // Define the compiler to use
-                use: {
-                    // Use the 'ts-loader' library
-                    loader: "ts-loader",
-                    // Options
-                    options: {
-                        // Use the 'babel-preset-es2015' library
-                        presets: ["es2015"]
+                use: [
+                    {
+                        // Compile the JSX code to javascript
+                        loader: "babel-loader",
+                        // Options
+                        options: {
+                            // Ensure the javascript works in legacy browsers
+                            presets: ["es2015"]
+                        }
+                    },
+                    {
+                        // Compile the typescript code to JSX
+                        loader: "ts-loader"
                     }
-                }
+                ]
             }
         ]
     }
